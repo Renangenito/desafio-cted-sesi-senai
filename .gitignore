@@ -1,0 +1,14 @@
+# .NET
+backend/bin/
+backend/obj/
+backend/out/
+backend/cted.db
+backend/cted.db-*
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Ambiente
+.env
+*.user

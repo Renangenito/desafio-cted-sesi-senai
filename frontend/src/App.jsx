@@ -1,0 +1,124 @@
+import { useEffect, useMemo, useState, useRef } from "react";
+import { fetchCourses, fetchCourseById, fetchMeta } from "./api.js";
+import CourseCard from "./components/CourseCard.jsx";
+import CourseModal from "./components/CourseModal.jsx";
+import FilterBar from "./components/FilterBar.jsx";
+import NavBar from "./components/NavBar.jsx";
+import bg from "./assets/hero-image.png";
+import logo from "./assets/logo-sesi-industria-white.svg";
+
+const STATUS_CLASS = {
+  "Disponível": "ok",
+  "Em breve": "soon",
+  "Indisponível": "off",
+};
+
+export default function App() {
+  const [meta, setMeta] = useState({ categorias: [], modalidades: [], status: [] });
+  const [courses, setCourses] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [nome, setNome] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [modalidade, setModalidade] = useState("");
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [modalLoading, setModalLoading] = useState(false);
+
+  const scrollerRef = useRef(null);
+  const filtrosAtivos = useMemo(() => Boolean(nome.trim() || categoria || modalidade || status), [nome, categoria, modalidade, status]);
+
+  useEffect(() => {
+    fetchMeta().then(setMeta).catch(() => setMeta({ categorias: [], modalidades: [], status: [] }));
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      setLoading(true); setError(null);
+      try {
+        const data = await fetchCourses({ nome, categoria, modalidade, status });
+        setCourses(data.courses); setTotal(data.total);
+      } catch (e) {
+        setError(e.message); setCourses([]); setTotal(0);
+      } finally { setLoading(false); }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [nome, categoria, modalidade, status]);
+
+  function limparFiltros() { setNome(""); setCategoria(""); setModalidade(""); setStatus(""); }
+
+  async function abrirDetalhes(id) {
+    setModalLoading(true); setSelected(null);
+    document.getElementById("curso-modal").showModal();
+    try { setSelected(await fetchCourseById(id)); } 
+    catch (e) { setError(e.message); document.getElementById("curso-modal").close(); } 
+    finally { setModalLoading(false); }
+  }
+
+  const scroll = (dir) => {
+    if (!scrollerRef.current) return;
+    scrollerRef.current.scrollBy({ left: dir === 'next' ? 296 : -296, behavior: 'smooth' });
+  };
+  const scrollCatalog = () => {
+    document.getElementById('catalogo')?.scrollIntoView({behavior:'smooth'})
+  }
+  return (
+    <>
+      <NavBar backgroundSrc={bg} logoSrc={logo} onConhecerCursos={() => document.getElementById('catalogo')?.scrollIntoView({behavior:'smooth'})} />
+
+      <main id="catalogo" className="container">
+        <FilterBar nome={nome} setNome={setNome} categoria={categoria} setCategoria={setCategoria} modalidade={modalidade} setModalidade={setModalidade} status={status} setStatus={setStatus} meta={meta} filtrosAtivos={filtrosAtivos} limparFiltros={limparFiltros} />
+
+        <p className="result-count" role="status" aria-live="polite">
+          {loading ? "Carregando cursos…" : `${total} ${total === 1 ? "curso encontrado" : "cursos encontrados"}`}
+        </p>
+
+        {error && !modalLoading && (
+          <div className="state state--error" role="alert">
+            <strong>Não foi possível carregar os cursos.</strong>
+            <p>{error}</p>
+            <button className="btn" onClick={() => window.location.reload()}>Tentar novamente</button>
+          </div>
+        )}
+
+        {!error && loading && (
+          <div className="carousel-wrapper">
+            <ul className="grid"><li><div className="ccard ccard--skeleton" /></li><li><div className="ccard ccard--skeleton" /></li><li><div className="ccard ccard--skeleton" /></li></ul>
+          </div>
+        )}
+
+        {!error && !loading && courses.length === 0 && (
+          <div className="state"><strong>Nenhum curso encontrado.</strong><p>Ajuste a pesquisa ou limpe os filtros.</p></div>
+        )}
+
+        {!error && !loading && courses.length > 0 && (
+          <div className="carousel-wrapper">
+            <ul className="grid" ref={scrollerRef}>
+              {courses.map((c) => (
+                <li key={c.id}>
+                  <CourseCard course={c} statusClass={STATUS_CLASS[c.status] ?? ""} onOpen={abrirDetalhes} />
+                </li>
+              ))}
+            </ul>
+
+            <div className="carousel-footer">
+              <button className="ver-todos" onClick={scrollCatalog}>
+                Ver todos os cursos
+              </button>
+              <div className="carousel-controls">
+                <button className="carousel-btn" onClick={() => scroll('prev')}>←</button>
+                <button className="carousel-btn" onClick={() => scroll('next')}>→</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer className="footer">
+        <div className="container"><p>CTED — Catálogo fictício para fins de processo seletivo. Todos os dados são ilustrativos.</p></div>
+      </footer>
+      <CourseModal course={selected} loading={modalLoading} />
+    </>
+  );
+}
