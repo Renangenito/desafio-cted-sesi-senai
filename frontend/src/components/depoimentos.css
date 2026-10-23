@@ -1,0 +1,71 @@
+.depo {
+  background: #7a0a0a; /* vermelho escuro do print */
+  padding: 60px 40px 40px;
+  color: white;
+  font-family: system-ui, sans-serif;
+}
+
+.depo__header span {
+  font-size: 10px;
+  letter-spacing: .12em;
+  opacity: .7;
+  text-transform: uppercase;
+}
+.depo__header h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 4px 0 32px;
+}
+
+.depo__carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 20px;
+}
+.depo__carousel::-webkit-scrollbar { display: none; }
+
+.depo__card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: #a41e22;
+  border-radius: 8px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+}
+.depo__card p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  opacity: .95;
+}
+.depo__footer {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.depo__footer strong { font-size: 12px; }
+.depo__footer span { font-size: 10px; opacity: .7; }
+.depo__stars { font-size: 12px; margin-top: 10px; letter-spacing: 2px; }
+
+.depo__controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 12px;
+}
+.depo__controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+.depo__controls button:hover { opacity: .6; }

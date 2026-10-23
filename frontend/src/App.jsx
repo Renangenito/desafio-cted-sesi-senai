@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import { fetchCourses, fetchCourseById, fetchMeta } from "./api.js";
+import NavBar from "./components/NavBar.jsx";
+import FilterBar from "./components/FilterBar.jsx";
 import CourseCard from "./components/CourseCard.jsx";
 import CourseModal from "./components/CourseModal.jsx";
-import FilterBar from "./components/FilterBar.jsx";
-import NavBar from "./components/NavBar.jsx";
+import AppImpactoTransformador from "./components/ImpactoTransformador.jsx";
 import bg from "./assets/hero-image.png";
 import logo from "./assets/logo-sesi-industria-white.svg";
+import Depoimentos from "./components/Depoimentos.jsx";
+import CtaTransformar from "./components/CtaTransformar.jsx";
+import Footer from "./components/Footer.jsx";
 
 const STATUS_CLASS = {
   "Disponível": "ok",
@@ -113,11 +117,14 @@ export default function App() {
             </div>
           </div>
         )}
+        <AppImpactoTransformador />
       </main>
-
-      <footer className="footer">
+      <Depoimentos />
+      <CtaTransformar />
+      <Footer />
+      {/* <footer className="footer">
         <div className="container"><p>CTED — Catálogo fictício para fins de processo seletivo. Todos os dados são ilustrativos.</p></div>
-      </footer>
+      </footer> */}
       <CourseModal course={selected} loading={modalLoading} />
     </>
   );
