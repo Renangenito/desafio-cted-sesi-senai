@@ -1,0 +1,62 @@
+.sobre {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 12rem;
+  max-width: 1120px;
+  margin: 2rem auto;
+  padding: 48px 24px;
+  font-family: system-ui, sans-serif;
+  background: white;
+}
+
+.sobre__left h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #111;
+}
+.sobre__left p {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0;
+}
+
+.ac {
+  border-bottom: 1px solid #e5e7eb;
+}
+.ac__head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  padding: 16px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  cursor: pointer;
+  text-align: left;
+}
+.ac__icon {
+  font-size: 18px;
+  font-weight: 300;
+}
+.ac__body {
+  padding: 0 0 20px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #374151;
+  animation: fade .2s ease;
+}
+.ac__body ul { margin: 6px 0 0 16px; padding: 0; }
+.ac__body li { margin-bottom: 2px; }
+.mod { margin-bottom: 16px; }
+.mod strong { display: block; font-size: 12px; margin-bottom: 4px; color: #111; }
+
+@keyframes fade { from {opacity:0; transform: translateY(-4px)} to {opacity:1; transform: translateY(0)} }
+
+@media (max-width: 800px) {
+  .sobre { grid-template-columns: 1fr; gap: 24px; }
+}

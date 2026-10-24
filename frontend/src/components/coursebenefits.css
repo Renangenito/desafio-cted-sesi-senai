@@ -1,0 +1,51 @@
+.cbene {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  background: white;
+  font-family: system-ui, sans-serif;
+}
+
+.cbene__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+.cbene__icon {
+  width: 40px;
+  height: 40px;
+  background: #fde8b5;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+.cbene__icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.cbene__item strong {
+  display: block;
+  font-size: 13px;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.cbene__item p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #6b7280;
+  margin: 0;
+  max-width: 200px;
+}
+
+@media (max-width: 900px) {
+  .cbene__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 520px) {
+  .cbene__grid { grid-template-columns: 1fr; }
+  .cbene__item p { max-width: 100%; }
+}

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "./depoimentos.css";
 
-const depoimentos = [
+const depoimentosMock = [
   {
     texto: "A experiência do curso foi incrível! As aulas foram muito bem estruturadas e o cronograma foi cuidadosamente planejado, facilitando muito o aprendizado.",
     nome: "Lucas Pereira",
@@ -29,23 +29,49 @@ const depoimentos = [
   },
 ];
 
-export default function Depoimentos() {
+const defaultColors = {
+  bg: "#7a0a0a",
+  card: "#a41e22",
+  text: "#ffffff",
+  textMuted: "rgba(255,255,255,0.7)",
+  controls: "#ffffff",
+  header: "#ffffff"
+};
+
+export default function Depoimentos({ 
+  data = depoimentosMock, 
+  colors = {},
+  title = "Quem fez recomenda",
+  label = "DEPOIMENTOS"
+}) {
   const ref = useRef(null);
+  const c = { ...defaultColors, ...colors };
+
   const scroll = (dir) => {
     ref.current?.scrollBy({ left: dir === 'next' ? 300 : -300, behavior: 'smooth' });
   };
 
   return (
-    <section className="depo">
+    <section 
+      className="depo"
+      style={{
+        "--depo-header": c.header,
+        "--depo-bg": c.bg,
+        "--depo-card": c.card,
+        "--depo-text": c.text,
+        "--depo-text-muted": c.textMuted,
+        "--depo-controls": c.controls,
+      }}
+    >
       <div className="depo__header">
         <div>
-          <span>DEPOIMENTOS</span>
-          <h2>Quem fez recomenda</h2>
+          <span>{label}</span>
+          <h2>{title}</h2>
         </div>
       </div>
 
       <div className="depo__carousel" ref={ref}>
-        {depoimentos.map((d, i) => (
+        {data.map((d, i) => (
           <article key={i} className="depo__card">
             <p>"{d.texto}"</p>
             <div className="depo__footer">

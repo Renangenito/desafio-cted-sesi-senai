@@ -4,6 +4,7 @@
   background-position: center;
   background-color: #C1272D;
   isolation: isolate;
+  padding: 0 2rem;
 }
 .hero__overlay {
   position: absolute; inset: 0;

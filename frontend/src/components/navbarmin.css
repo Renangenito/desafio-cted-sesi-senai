@@ -1,0 +1,42 @@
+.detail__header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8rem;
+  border-bottom: 1px solid rgba(61, 52, 52, 0.18);
+}
+
+.detail__brand {
+  color: #241f1f;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+.detail__logo {
+  height: 20px;
+}
+
+.detail__nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.detail__nav-link {
+  color: rgb(34, 32, 32);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.detail__nav-link--active {
+  color: rgb(34, 32, 32);
+}
+
+.detail__nav-link--outline {
+  border: 1px solid rgba(61, 52, 52, 0.20);
+  padding: 6px 14px;
+  border-radius: 6px;
+}

@@ -50,7 +50,6 @@ export default function ImpactoTransformador() {
           {features.map((f) => (
             <div key={f.title} className="impacto__feature">
             <div className="impacto__icon"><img src={f.icon} alt={f.title} /></div>
-            {console.log(f.icon)}
               <strong>{f.title}</strong>
               <p>{f.desc}</p>
             </div>
