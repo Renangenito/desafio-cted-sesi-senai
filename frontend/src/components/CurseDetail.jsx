@@ -1,4 +1,4 @@
-import "./curseDetail.css";
+import "./cursedetail.css";
 import videoThumb from "../assets/video-thumb.png";
 import { useNavigate } from "react-router-dom";
 
