@@ -1,4 +1,3 @@
-
 import './navbar.css';
 
 export default function NavBar({
@@ -17,29 +16,63 @@ export default function NavBar({
             <header className="hero__header">
                 <div className="hero__brand">
                     {logoSrc ? (
-                        <img src={logoSrc} alt="SESI Indústria" className="hero__logo" />
+                        <img
+                            src={logoSrc}
+                            alt="SESI Indústria"
+                            className="hero__logo"
+                        />
                     ) : (
                         <span>SESI+INDÚSTRIA</span>
                     )}
                 </div>
 
-                <nav className="hero__nav" aria-label="Navegação principal">
-                    <a href="#" className="hero__nav-link hero__nav-link--active">Início</a>
-                    <a href="#" className="hero__nav-link" onClick={onConhecerCursos}>Cursos</a>
-                    <a href="#" className="hero__nav-link">Sobre</a>
-                    <a href="#" className="hero__nav-link hero__nav-link--outline">Área do aluno</a>
+                <nav
+                    className="hero__nav"
+                    aria-label="Navegação principal"
+                >
+                    <a
+                        href="#"
+                        className="hero__nav-link hero__nav-link--active"
+                    >
+                        Início
+                    </a>
+
+                    <a
+                        href="#"
+                        className="hero__nav-link"
+                        onClick={onConhecerCursos}
+                    >
+                        Cursos
+                    </a>
+
+                    <a
+                        href="#"
+                        className="hero__nav-link"
+                    >
+                        Sobre
+                    </a>
+
+                    <a
+                        href="#"
+                        className="hero__nav-link hero__nav-link--outline"
+                    >
+                        Área do aluno
+                    </a>
                 </nav>
             </header>
 
             <div className="hero__content">
                 <h1 className="hero__title">
-                    Impulsione<br />
-                    sua carreira<br />
+                    Impulsione
+                    <br />
+                    sua carreira
+                    <br />
                     na indústria
                 </h1>
 
                 <p className="hero__subtitle">
-                    Amplie seus conhecimentos com excelência na melhor plataforma de estudos da indústria brasileira
+                    Amplie seus conhecimentos com excelência na melhor
+                    plataforma de estudos da indústria brasileira
                 </p>
 
                 <button
@@ -47,7 +80,8 @@ export default function NavBar({
                     className="hero__button"
                     onClick={onConhecerCursos}
                 >
-                    Conhecer cursos <span aria-hidden="true">→</span>
+                    Conhecer cursos
+                    <span aria-hidden="true">→</span>
                 </button>
             </div>
         </section>

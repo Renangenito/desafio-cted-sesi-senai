@@ -1,42 +1,375 @@
+/* =========================
+   HEADER
+   ========================= */
+
 .detail__header {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 8rem;
-  border-bottom: 1px solid rgba(61, 52, 52, 0.18);
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 20px clamp(20px, 8vw, 128px);
+
+    border-bottom: 1px solid rgba(61, 52, 52, 0.18);
+
+    background: transparent;
 }
 
+
+/* =========================
+   BRAND
+   ========================= */
+
 .detail__brand {
-  color: #241f1f;
-  font-weight: 900;
-  font-size: 12px;
-  letter-spacing: 1.2px;
+    display: flex;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: #241f1f;
+
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 1;
+
+    letter-spacing: 1.2px;
 }
 
 .detail__logo {
-  height: 20px;
+    display: block;
+
+    width: auto;
+    height: 20px;
+
+    max-width: 180px;
+
+    object-fit: contain;
 }
 
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
 .detail__nav {
-  display: flex;
-  gap: 28px;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: clamp(16px, 2.2vw, 28px);
+
+    margin-left: 30px;
 }
 
 .detail__nav-link {
-  color: rgb(34, 32, 32);
-  font-size: 13px;
-  text-decoration: none;
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+
+    color: rgb(34, 32, 32);
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    text-decoration: none;
+
+    transition:
+        opacity 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.detail__nav-link:hover {
+    opacity: 0.65;
 }
 
 .detail__nav-link--active {
-  color: rgb(34, 32, 32);
+    color: rgb(34, 32, 32);
 }
 
+
+/* =========================
+   ACTIVE INDICATOR
+   ========================= */
+
+.detail__nav-link--active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -7px;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: scaleX(0);
+
+    transition: transform 0.2s ease;
+}
+
+.detail__nav-link--active:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================
+   ÁREA DO ALUNO
+   ========================= */
+
 .detail__nav-link--outline {
-  border: 1px solid rgba(61, 52, 52, 0.20);
-  padding: 6px 14px;
-  border-radius: 6px;
+    padding: 7px 14px;
+
+    border: 1px solid rgba(61, 52, 52, 0.20);
+    border-radius: 6px;
+}
+
+.detail__nav-link--outline:hover {
+    opacity: 1;
+
+    border-color: rgba(61, 52, 52, 0.40);
+
+    background: rgba(61, 52, 52, 0.04);
+}
+
+
+/* =========================
+   TABLET
+   Até 900px
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .detail__header {
+        padding: 18px 32px;
+    }
+
+    .detail__logo {
+        max-width: 160px;
+        height: 20px;
+    }
+
+    .detail__nav {
+        gap: 18px;
+
+        margin-left: 20px;
+    }
+
+    .detail__nav-link {
+        font-size: 12px;
+    }
+
+    .detail__nav-link--outline {
+        padding: 7px 11px;
+    }
+}
+
+
+/* =========================
+   TABLETS PEQUENOS
+   Até 700px
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .detail__header {
+        align-items: flex-start;
+
+        padding: 18px 20px;
+
+        gap: 20px;
+    }
+
+    .detail__brand {
+        min-width: 0;
+    }
+
+    .detail__logo {
+        width: auto;
+        max-width: 140px;
+        height: auto;
+        max-height: 20px;
+    }
+
+    .detail__nav {
+        flex: 1;
+
+        flex-wrap: wrap;
+
+        justify-content: flex-end;
+
+        gap: 10px 14px;
+
+        margin-left: 10px;
+    }
+
+    .detail__nav-link {
+        font-size: 11px;
+    }
+
+    .detail__nav-link--active::after {
+        bottom: -5px;
+    }
+
+    .detail__nav-link--outline {
+        padding: 6px 9px;
+    }
+}
+
+
+/* =========================
+   CELULARES
+   Até 480px
+   ========================= */
+
+@media (max-width: 480px) {
+
+    .detail__header {
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 18px 16px 16px;
+
+        gap: 16px;
+    }
+
+    .detail__brand {
+        justify-content: center;
+
+        width: 100%;
+    }
+
+    .detail__logo {
+        max-width: 150px;
+        max-height: 22px;
+    }
+
+    .detail__nav {
+        width: 100%;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 9px 12px;
+
+        margin-left: 0;
+    }
+
+    .detail__nav-link {
+        font-size: 11px;
+    }
+
+    .detail__nav-link--outline {
+        padding: 6px 8px;
+    }
+}
+
+
+/* =========================
+   CELULARES PEQUENOS
+   Até 360px
+   ========================= */
+
+@media (max-width: 360px) {
+
+    .detail__header {
+        padding: 16px 12px 14px;
+
+        gap: 14px;
+    }
+
+    .detail__logo {
+        max-width: 135px;
+        max-height: 20px;
+    }
+
+    .detail__nav {
+        gap: 8px;
+    }
+
+    .detail__nav-link {
+        font-size: 10px;
+    }
+
+    .detail__nav-link--outline {
+        padding: 5px 7px;
+    }
+}
+
+
+/* =========================
+   CELULARES MUITO PEQUENOS
+   Até 320px
+   ========================= */
+
+@media (max-width: 320px) {
+
+    .detail__header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .detail__logo {
+        max-width: 125px;
+    }
+
+    .detail__nav {
+        gap: 7px 8px;
+    }
+
+    .detail__nav-link {
+        font-size: 9px;
+    }
+
+    .detail__nav-link--outline {
+        padding: 5px 6px;
+    }
+}
+
+
+/* =========================
+   ACESSIBILIDADE
+   ========================= */
+
+.detail__nav-link:focus-visible {
+    outline: 2px solid #241f1f;
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+.detail__nav-link--outline:focus-visible {
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   REDUÇÃO DE MOVIMENTO
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .detail__nav-link,
+    .detail__nav-link--active::after {
+        transition: none;
+    }
 }

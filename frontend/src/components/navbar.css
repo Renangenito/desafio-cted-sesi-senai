@@ -28,3 +28,226 @@
 .hero__subtitle { color: rgba(255,255,255,0.8); font-size: 15px; line-height: 1.5; margin-top: 24px; max-width: 420px; }
 .hero__button { margin-top: 28px; background: #fff; color: #111; border: 0; padding: 10px 18px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; }
 
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 900px) {
+    .hero__header {
+        padding: 18px 32px;
+    }
+
+    .hero__nav {
+        gap: 18px;
+        margin-left: 20px;
+    }
+
+    .hero__nav-link {
+        font-size: 12px;
+    }
+
+    .hero__nav-link--outline {
+        padding: 7px 11px;
+    }
+
+    .hero__content {
+        width: calc(100% - 64px);
+        padding-top: 100px;
+    }
+
+    .hero__title {
+        font-size: clamp(46px, 7vw, 68px);
+    }
+}
+
+/* =========================
+   CELULAR
+   ========================= */
+
+@media (max-width: 700px) {
+    .hero {
+        min-height: 100svh;
+
+        background-position: center;
+    }
+
+    .hero__header {
+        align-items: flex-start;
+
+        padding: 18px 20px;
+
+        gap: 20px;
+    }
+
+    .hero__brand {
+        min-width: 0;
+    }
+
+    .hero__logo {
+        max-width: 140px;
+        height: auto;
+        max-height: 20px;
+    }
+
+    .hero__nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+
+        gap: 10px 14px;
+
+        margin-left: 10px;
+    }
+
+    .hero__nav-link {
+        font-size: 11px;
+    }
+
+    .hero__nav-link--active::after {
+        bottom: -5px;
+    }
+
+    .hero__nav-link--outline {
+        padding: 6px 9px;
+    }
+
+    .hero__content {
+        width: calc(100% - 40px);
+
+        padding-top: 80px;
+        padding-bottom: 50px;
+    }
+
+    .hero__title {
+        max-width: 100%;
+
+        font-size: clamp(42px, 12vw, 60px);
+        line-height: 1;
+        letter-spacing: -1.5px;
+    }
+
+    .hero__subtitle {
+        max-width: 100%;
+
+        margin-top: 22px;
+
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .hero__button {
+        width: auto;
+
+        margin-top: 26px;
+        padding: 12px 18px;
+
+        font-size: 13px;
+    }
+}
+
+/* =========================
+   CELULARES PEQUENOS
+   ========================= */
+
+@media (max-width: 480px) {
+    .hero__header {
+        flex-direction: column;
+        align-items: center;
+
+        padding: 18px 16px 16px;
+
+        gap: 16px;
+    }
+
+    .hero__brand {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero__logo {
+        max-width: 150px;
+    }
+
+    .hero__nav {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 9px 12px;
+
+        margin-left: 0;
+    }
+
+    .hero__nav-link {
+        font-size: 11px;
+    }
+
+    .hero__nav-link--outline {
+        padding: 6px 8px;
+    }
+
+    .hero__content {
+        width: calc(100% - 32px);
+
+        padding-top: 70px;
+    }
+
+    .hero__title {
+        font-size: clamp(38px, 12vw, 52px);
+        letter-spacing: -1px;
+    }
+
+    .hero__subtitle {
+        font-size: 14px;
+    }
+
+    .hero__button {
+        width: 100%;
+        max-width: 220px;
+    }
+}
+
+/* =========================
+   CELULARES MUITO PEQUENOS
+   ========================= */
+
+@media (max-width: 360px) {
+    .hero__header {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hero__nav {
+        gap: 8px;
+    }
+
+    .hero__nav-link {
+        font-size: 10px;
+    }
+
+    .hero__nav-link--outline {
+        padding: 5px 7px;
+    }
+
+    .hero__content {
+        width: calc(100% - 24px);
+        padding-top: 55px;
+    }
+
+    .hero__title {
+        font-size: 37px;
+    }
+
+    .hero__subtitle {
+        font-size: 13px;
+    }
+}
+
+/* =========================
+   ACESSIBILIDADE
+   ========================= */
+
+.hero__nav-link:focus-visible,
+.hero__button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
