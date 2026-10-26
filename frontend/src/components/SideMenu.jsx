@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SideMenu.css";
+import "./sidemenu.css";
 
 export default function SideMenu({
     cursoNome = "Matemática para a Precisão: Medidas e Escalas na Metalurgia",
